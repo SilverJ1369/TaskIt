@@ -1,0 +1,23 @@
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  width: 15%;
+  border: 1px solid;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+}
+
+.main {
+  flex-grow: 1;
+  position: relative;
+  left: 15%;
+  width: 80%;
+}
+
+.btn-size {
+  size: 75%;
+}

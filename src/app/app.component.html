@@ -1,11 +1,9 @@
-<div class="container">
-  <div class="row">
-    <div class="col-2">
-      <app-sidebar></app-sidebar>
-      <hr>
-    </div>
-      <div class="col-10">
-        <p class="m-0">Everything else here</p>
-      </div>
-  </div>
+<div class="flex-container">
+  <aside class="sidebar flex-item-fixed">
+    <app-sidebar></app-sidebar>
+  </aside>
+  <main class="main flex-item-grow">
+    <app-task-list></app-task-list>
+  </main>
 </div>
+
