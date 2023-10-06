@@ -21,8 +21,9 @@ h1 {
 table {
   border: 2px solid;
   border-radius: 5px;
-  width: 60%;
+  width: 75vw;
   margin: 10px;
+  align-content: left;
 }
 
 .material-symbols-outlined {

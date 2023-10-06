@@ -1,22 +1,25 @@
 <h1><b>Task List</b></h1>
-<!-- <span class="material-symbols-outlined">
-  delete
-  </span> -->
 <div class="row">
   <label for="filters" class="filter-label"><b>Filters: </b></label>
   <select name="status" class="form-control form-control-sm filter-options custom-select">
     <option>Status</option>
+    <option>ToDo</option>
+    <option>In Progress</option>
+    <option>Completed</option>
   </select>
   <select name="date" class="form-control form-control-sm filter-options custom-select">
     <option>Date</option>
   </select>
   <select name="priority" class="form-control form-control-sm filter-options custom-select">
     <option>Priority</option>
+    <option>Low</option>
+    <option>Medium</option>
+    <option>High</option>
   </select>
   <button class="btn btn-success btn-add">Add New Task</button>
 </div>
 <div class="task-table">
-  <table class="table roundedCorners">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Title</th>
@@ -27,11 +30,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td scope="row">Clean the Garage</td>
-        <td>Today</td>
-        <td>Medium</td>
-        <td>Todo</td>
+      <tr *ngFor="let task of tasks">
+        <td scope="row">{{ task.title }}</td>
+        <td>{{ task.dueDate }}</td>
+        <td>{{ task.priority }}</td>
+        <td>{{ task.status }}</td>
         <td>
           <span class="material-symbols-outlined">
             visibility
@@ -43,37 +46,6 @@
             delete
           </span>
           </td>
-      </tr>
-      <tr>
-        <td scope="row">Clean the Garage</td>
-        <td>Today</td>
-        <td>Low</td>
-        <td>Todo</td>
-        <td><span class="material-symbols-outlined">
-          visibility
-        </span>
-        <span class="material-symbols-outlined">
-          check_box
-        </span>
-        <span class="material-symbols-outlined">
-          delete
-        </span>
-        </td>
-      </tr>
-      <tr>
-        <td scope="row">Clean the Garage</td>
-        <td>Today</td>
-        <td>High</td>
-        <td>Todo</td>
-        <td><span class="material-symbols-outlined">
-          visibility
-        </span>
-        <span class="material-symbols-outlined">
-          check_box
-        </span>
-        <span class="material-symbols-outlined">
-          delete
-        </span></td>
       </tr>
     </tbody>
   </table>
