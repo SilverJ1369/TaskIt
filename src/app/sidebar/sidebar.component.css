@@ -1,0 +1,10 @@
+.genInfo {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 15%;
+}
+
+p {
+  margin-left: 20px;
+}
