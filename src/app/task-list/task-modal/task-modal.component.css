@@ -1,0 +1,20 @@
+div {
+  background-color: #cec9c9;
+  margin: 15px;
+}
+
+input, textarea, select {
+  background-color: white;
+}
+
+.buttons {
+  background-color: none;
+}
+
+h1 {
+  color: white;
+  margin: 10px;
+}
+
+
+

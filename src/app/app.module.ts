@@ -6,6 +6,13 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { FormModalComponent } from './shared/form-modal/form-modal.component';
 import { TaskModalComponent } from './task-list/task-modal/task-modal.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import { NgIf } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +23,13 @@ import { TaskModalComponent } from './task-list/task-modal/task-modal.component'
     TaskModalComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    NgIf,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
