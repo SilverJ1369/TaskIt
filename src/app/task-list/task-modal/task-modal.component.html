@@ -1,26 +1,51 @@
 <h1>Add a New Task</h1>
-<div class="form-group">
+<form class="form-group" [formGroup]="taskForm">
   <div class="d-flex flex-row">
     <div class="d-flex flex-column">
-      <input type="text" name="title" id="title" placeholder="Title" class="form-control form-text flex-row mb-3">
-      <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Description" class="form-text flex-row"></textarea>
+      <input
+      type="text"
+      name="title"
+      id="title"
+      placeholder="Title"
+      class="form-control form-text flex-row mb-3"
+      formControlName="title">
+      <textarea
+      name="desc"
+      id="desc"
+      cols="30"
+      rows="10"
+      placeholder="Description"
+      class="form-text flex-row"
+      formControlName="desc"></textarea>
     </div>
     <div class="d-flex flex-column">
-      <input type="date" placeholder="Due Date" class="form-text mb-3">
-      <select name="priority" class="form-control form-control-sm filter-options custom-select mb-3" aria-placeholder="Priority">
-        <option>Low</option>
-        <option>Medium</option>
-        <option>High</option>
+      <input
+      type="date"
+      placeholder="Due Date"
+      class="form-text mb-3"
+      formControlName="dueDate">
+      <select
+        name="priority"
+        class="form-control form-control-sm filter-options custom-select mb-3"
+        aria-placeholder="Priority"
+        formControlName="priority">
+        <option selected value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
       </select>
-      <select name="status" class="form-control form-control-sm filter-options custom-select mb-3" aria-placeholder="Status">
-        <option>ToDo</option>
-        <option>In Progress</option>
-        <option>Completed</option>
+      <select
+      name="status"
+      class="form-control form-control-sm filter-options custom-select mb-3"
+      aria-placeholder="Status"
+      formControlName="status">
+        <option selected value="todo">ToDo</option>
+        <option value="inProgress">In Progress</option>
+        <option value="completed">Completed</option>
       </select>
       <div class="buttons">
         <button class="btn btn-secondary mr-3 mat-dialog-close" (click)="onCancel()">Cancel</button>
-        <button class="btn btn-success">Create</button>
+        <button class="btn btn-success" type="submit" (click)="onCreateTask()">Create</button>
       </div>
     </div>
   </div>
-</div>
+</form>

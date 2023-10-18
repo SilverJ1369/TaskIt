@@ -33,9 +33,14 @@ export class TaskListComponent implements OnInit {
       data: Task,
     });
 
-    dialogRef.afterClosed().subscribe(task => {
-      this.tasklistService.saveTask(task);
-    });
+    // dialogRef.afterClosed().subscribe(task => {
+    //   if (task) {
+    //     this.tasklistService.saveTask(task);
+    //   } else {
+    //     alert('No task bro!');
+    //   }
+
+    // });
   }
 
 }

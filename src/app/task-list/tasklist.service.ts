@@ -1,17 +1,15 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Task } from './task.model';
+import { Task, Priority, Status } from './task.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasklistService {
   private myTasks: Task[] = [
-    new Task('Test task', new Date(), 'low', 'todo'),
-    new Task('Test task', new Date(), 'low', 'todo'),
+    new Task('Create a New Task', new Date(), Priority.low, Status.todo),
   ];
 
   tasklistChanged = new EventEmitter<Task[]>();
-
 
   constructor() { }
 
