@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { NgIf } from '@angular/common';
+import { DeleteModalComponent } from './task-list/delete-modal/delete-modal.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { NgIf } from '@angular/common';
     SidebarComponent,
     TaskListComponent,
     FormModalComponent,
-    TaskModalComponent
+    TaskModalComponent,
+    DeleteModalComponent
   ],
   imports: [
     BrowserModule,

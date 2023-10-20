@@ -1,13 +1,13 @@
 export enum Priority{
-  low = 'Low',
-  medium = 'Medium',
-  high = 'High'
+  low = 'low',
+  medium = 'medium',
+  high = 'high'
 }
 
 export enum Status {
-  todo = 'Todo',
-  inProgress = 'In-Progress',
-  completed = 'Completed',
+  todo = 'todo',
+  inProgress = 'inprogress',
+  completed = 'completed',
 }
 export class Task {
   public title: string;

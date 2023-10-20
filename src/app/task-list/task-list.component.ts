@@ -1,8 +1,9 @@
 import { Component, OnInit} from '@angular/core';
-import { Task } from './task.model';
+import { Priority, Status, Task } from './task.model';
 import { TasklistService } from './tasklist.service';
 import { TaskModalComponent } from './task-modal/task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogModule } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-task-list',
@@ -30,17 +31,15 @@ export class TaskListComponent implements OnInit {
 
   openModal() {
     const dialogRef = this.dialog.open(TaskModalComponent, {
-      data: Task,
     });
-
-    // dialogRef.afterClosed().subscribe(task => {
-    //   if (task) {
-    //     this.tasklistService.saveTask(task);
-    //   } else {
-    //     alert('No task bro!');
-    //   }
-
-    // });
   }
 
+  editTask(index) {
+    const tasksToEdit = this.tasklistService.getTasks();
+    const dialogRef = this.dialog.open(TaskModalComponent, {
+      data: tasksToEdit[index],
+    })
+    console.log(tasksToEdit[index]);
+
+  }
 }

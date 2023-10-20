@@ -3,27 +3,27 @@
   <div class="d-flex flex-row">
     <div class="d-flex flex-column">
       <input
-      type="text"
-      name="title"
-      id="title"
-      placeholder="Title"
-      class="form-control form-text flex-row mb-3"
-      formControlName="title">
+        type="text"
+        name="title"
+        id="title"
+        class="form-control form-text flex-row mb-3"
+        formControlName="title">
       <textarea
-      name="desc"
-      id="desc"
-      cols="30"
-      rows="10"
-      placeholder="Description"
-      class="form-text flex-row"
-      formControlName="desc"></textarea>
+        name="desc"
+        id="desc"
+        cols="30"
+        rows="10"
+        placeholder="Description"
+        class="form-text flex-row"
+        formControlName="desc">
+      </textarea>
     </div>
     <div class="d-flex flex-column">
       <input
-      type="date"
-      placeholder="Due Date"
-      class="form-text mb-3"
-      formControlName="dueDate">
+        type="date"
+        placeholder="Due Date"
+        class="form-text mb-3"
+        formControlName="dueDate">
       <select
         name="priority"
         class="form-control form-control-sm filter-options custom-select mb-3"
@@ -34,17 +34,17 @@
         <option value="high">High</option>
       </select>
       <select
-      name="status"
-      class="form-control form-control-sm filter-options custom-select mb-3"
-      aria-placeholder="Status"
-      formControlName="status">
+        name="status"
+        class="form-control form-control-sm filter-options custom-select mb-3"
+        aria-placeholder="Status"
+        formControlName="status">
         <option selected value="todo">ToDo</option>
         <option value="inProgress">In Progress</option>
         <option value="completed">Completed</option>
       </select>
       <div class="buttons">
         <button class="btn btn-secondary mr-3 mat-dialog-close" (click)="onCancel()">Cancel</button>
-        <button class="btn btn-success" type="submit" (click)="onCreateTask()">Create</button>
+        <button class="btn btn-success" type="submit" (click)="onCreateTask()">{{submitButtonText}}</button>
       </div>
     </div>
   </div>
