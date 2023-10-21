@@ -19,11 +19,13 @@
       </textarea>
     </div>
     <div class="d-flex flex-column">
-      <input
-        type="date"
-        placeholder="Due Date"
-        class="form-text mb-3"
-        formControlName="dueDate">
+      <mat-form-field>
+        <mat-label>Due Date:</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dueDate"
+        style="color: black"/>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker color="primary"></mat-datepicker>
+      </mat-form-field>
       <select
         name="priority"
         class="form-control form-control-sm filter-options custom-select mb-3"

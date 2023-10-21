@@ -6,7 +6,7 @@ import { Task, Priority, Status } from './task.model';
 })
 export class TasklistService {
   private myTasks: Task[] = [
-    new Task('Create a New Task', new Date(), Priority.low, Status.todo, 'testing description'),
+    new Task(1, 'Create a New Task', new Date("10/21/2023"), Priority.low, Status.todo, 'testing description'),
   ];
 
   tasklistChanged = new EventEmitter<Task[]>();

@@ -10,13 +10,15 @@ export enum Status {
   completed = 'completed',
 }
 export class Task {
+  public id: number;
   public title: string;
   public dueDate: Date;
   public priority: Priority;
   public status: Status;
   public desc?: string;
 
-  constructor(title: string, dueDate: Date, priority: Priority, status: Status, desc?: string) {
+  constructor(id: number, title: string, dueDate: Date, priority: Priority, status: Status, desc?: string) {
+    this.id = id;
     this.title = title;
     this.dueDate = dueDate;
     this.priority = priority;

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TaskListComponent } from './task-list/task-list.component';
-import { FormModalComponent } from './shared/form-modal/form-modal.component';
+
 import { TaskModalComponent } from './task-list/task-modal/task-modal.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -12,7 +12,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { NgIf } from '@angular/common';
-import { DeleteModalComponent } from './task-list/delete-modal/delete-modal.component';
+
+import { MatDatepickerModule} from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -20,9 +25,8 @@ import { DeleteModalComponent } from './task-list/delete-modal/delete-modal.comp
     AppComponent,
     SidebarComponent,
     TaskListComponent,
-    FormModalComponent,
     TaskModalComponent,
-    DeleteModalComponent
+    KanbanBoardComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,11 @@ import { DeleteModalComponent } from './task-list/delete-modal/delete-modal.comp
     NgIf,
     MatDialogModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

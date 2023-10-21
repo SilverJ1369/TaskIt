@@ -5,7 +5,11 @@
     <span>It</span>
     </strong>
   </h2>
-  <button class="btn btn-success btn-size">Task List</button>
+  <div class="d-flex flex-row">
+    <button class="btn btn-success btn-size flex-column" routerLink="/tasklist" routerLinkActive="active">Task List</button>
+    <button class="btn btn-success btn-size flex-column" style="margin-left: 15px;" routerLink="/kanban"
+    routerLinkActive="active">Kanban Board</button>
+  </div>
   <div class="genInfo">
     <div class="d-flex justify-content-between border">
       <span class="material-symbols-outlined">
@@ -18,4 +22,3 @@
     </div>
   </div>
 </div>
-

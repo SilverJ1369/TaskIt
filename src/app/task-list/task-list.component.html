@@ -2,7 +2,7 @@
 <div class="row">
   <label for="filters" class="filter-label"><b>Filters: </b></label>
   <select name="status" class="form-control form-control-sm filter-options custom-select">
-    <option>Status</option>
+    <option>All Statuses</option>
     <option>ToDo</option>
     <option>In Progress</option>
     <option>Completed</option>
@@ -11,7 +11,7 @@
     <option>Date</option>
   </select>
   <select name="priority" class="form-control form-control-sm filter-options custom-select">
-    <option>Priority</option>
+    <option>All Priorities</option>
     <option>Low</option>
     <option>Medium</option>
     <option>High</option>
@@ -33,7 +33,21 @@
       <tr *ngFor="let task of tasks; let i = index">
         <td scope="row">{{ task.title }}</td>
         <td>{{ task.dueDate }}</td>
-        <td>{{ task.priority | titlecase }}</td>
+        <td>{{ task.priority | titlecase }}
+          <div *ngIf="task.priority === 'low'; then lowBlock else mediumHighBlock"></div>
+            <ng-template #lowBlock>
+              😁
+            </ng-template>
+            <ng-template #mediumHighBlock>
+              <div *ngIf="task.priority === 'medium'; then mediumBlock else highBlock"></div>
+              <ng-template #mediumBlock>
+                😎
+              </ng-template>
+              <ng-template #highBlock>
+                😴
+              </ng-template>
+            </ng-template>
+        </td>
         <td>{{ task.status | titlecase }}</td>
         <td>
           <button class="btn" (click)="editTask(i)">

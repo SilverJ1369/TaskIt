@@ -4,6 +4,7 @@ import { TasklistService } from './tasklist.service';
 import { TaskModalComponent } from './task-modal/task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogModule } from '@angular/cdk/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-task-list',
@@ -26,7 +27,7 @@ export class TaskListComponent implements OnInit {
   }
 
   onRemoveTask(index) {
-    this.tasklistService.removeTask(index);
+    this.onDelete(index);
   }
 
   openModal() {
@@ -37,9 +38,40 @@ export class TaskListComponent implements OnInit {
   editTask(index) {
     const tasksToEdit = this.tasklistService.getTasks();
     const dialogRef = this.dialog.open(TaskModalComponent, {
-      data: tasksToEdit[index],
+      // data: tasksToEdit[index],
+      data: {
+        id: tasksToEdit[index].id,
+        title: tasksToEdit[index].title,
+        dueDate: tasksToEdit[index].dueDate,
+        priority: tasksToEdit[index].priority,
+        status: tasksToEdit[index].status,
+        desc: tasksToEdit[index].desc
+      }
     })
-    console.log(tasksToEdit[index]);
+    console.log('from edit task',tasksToEdit[index]);
+    console.log('data', dialogRef);
 
+
+  }
+
+  onDelete(index: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to undo this!",
+      icon: 'warning',
+      allowOutsideClick: false,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        {
+          this.tasklistService.removeTask(index);
+        };
+        // push the new changes
+        Swal.fire('Deleted!', 'Your task has been deleted.', 'success');
+      }
+    });
   }
 }
