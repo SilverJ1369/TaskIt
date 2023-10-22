@@ -1,9 +1,92 @@
 <div class="kanban-details">
   <h1><b>Kanban Board</b></h1>
-  <div class="flex-container d-flex flex-row">
-    <div class="flex-column">
-      <p>Todo</p>
-      
+  <div class="flex-container d-flex flex-row justify-content-between">
+    <div class="flex-column ml-3 mr-3">
+      <p><b>Todo</b></p>
+      <div class="bg-white kanban-task-column flex-grow-1">
+        <div class="m-3">
+          <div class="flex-container" *ngFor="let task of tasks">
+            <div class="inner-card" *ngIf="task.status === 'todo'">
+              <div class="d-flex flex-row justify-content-between">
+                <div class="d-flex flex-column">
+                  <p>{{task.title}}</p>
+                </div>
+                <div class="d-flex flex-column">
+                  <select [(ngModel)]="task.status" (change)="onSave(task.id, task.status)">
+                    <option value="todo">Todo</option>
+                    <option value="inprogress">in-Progress</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex flex-row">
+                <p>Priority</p>
+              </div>
+              <div class="d-flex flex-row">
+                <p>Due Date</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-column ml-3 mr-3">
+      <p><b>In-Progress</b></p>
+      <div class="bg-white kanban-task-column flex-grow-1">
+        <div class="m-3">
+          <div class="flex-container" *ngFor="let task of tasks">
+            <div class="inner-card" *ngIf="task.status === 'inprogress'">
+              <div class="d-flex flex-row justify-content-between">
+                <div class="d-flex flex-column">
+                  <p>{{task.title}}</p>
+                </div>
+                <div class="d-flex flex-column">
+                  <select [(ngModel)]="task.status" (change)="onSave(task.id, task.status)">
+                    <option value="todo">Todo</option>
+                    <option value="inprogress">in-Progress</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex flex-row">
+                <p>Priority</p>
+              </div>
+              <div class="d-flex flex-row">
+                <p>Due Date</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-column ml-3 mr-3">
+      <p><b>Completed</b></p>
+      <div class="bg-white kanban-task-column flex-grow-1">
+        <div class="m-3">
+          <div class="flex-container mt-3" style="margin-top: 15px" *ngFor="let task of tasks">
+            <div class="inner-card" *ngIf="task.status === 'completed'">
+              <div class="d-flex flex-row justify-content-between">
+                <div class="d-flex flex-column">
+                  <p>{{task.title}}</p>
+                </div>
+                <div class="d-flex flex-column">
+                  <select [(ngModel)]="task.status" (change)="onSave(task.id, task.status)">
+                    <option value="todo">Todo</option>
+                    <option value="inprogress">in-Progress</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex flex-row">
+                <p>Priority</p>
+              </div>
+              <div class="d-flex flex-row">
+                <p>Due Date</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -21,6 +21,7 @@ export class TaskModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Task
   ) {
     this.taskForm = this.formBuilder.group({
+      id: ['id'],
       title: ['Title', Validators.required],
       dueDate: ['', Validators.required],
       priority: ['', Validators.required],
@@ -30,8 +31,8 @@ export class TaskModalComponent implements OnInit {
   }
   ngOnInit(): void {
     if(this.data){
-      this.submitButtonText = "Edit"
-
+      this.submitButtonText = "Save"
+      this.taskForm.get("id").setValue(this.data.id);
       this.taskForm.get("title").setValue(this.data.title);
       this.taskForm.get("dueDate").setValue(new Date(this.data.dueDate));
       this.taskForm.get("priority").setValue(this.data.priority);
@@ -45,6 +46,22 @@ export class TaskModalComponent implements OnInit {
   }
 
   onCreateTask() {
+    if (this.submitButtonText === "Create"){
+      this.addTask();
+    } else {
+      this.dialogRef.close();
+      this.editTask();
+    }
+
+
+  }
+    editTask() {
+      const task: Task = this.taskForm.value;
+      console.log('editTask', task);
+      this.tasklistService.updateTask(task);
+    }
+
+    addTask() {
     console.log('this.taskform.value = ', this.taskForm.value);
     const nextId = this.generateId();
     const {title, dueDate, priority, status, desc} = this.taskForm.value
@@ -58,11 +75,11 @@ export class TaskModalComponent implements OnInit {
 
     this.tasklistService.saveTask(newTask);
     this.dialogRef.close();
-  }
+    }
 
   generateId(): number {
     return Math.floor(Math.random() * 9000) + 1000;
   }
 
-  
 }
+
