@@ -58,6 +58,8 @@ export class TaskModalComponent implements OnInit {
     editTask() {
       const task: Task = this.taskForm.value;
       console.log('editTask', task);
+      console.log('status from edit', task.status);
+
       this.tasklistService.updateTask(task);
     }
 

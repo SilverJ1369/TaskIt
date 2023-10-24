@@ -23,13 +23,13 @@ export class KanbanBoardComponent implements OnInit {
       });
     }
 
-  onSave(id: number, status) {
+  onSave(id: number, status: Status) {
     const newStatus = status
     console.log('status', status);
 
     const task = this.tasks.find((task) => task.id === id)
     console.log('the lookup', task);
-    this.tasklistService.updateTask(task, newStatus);
+    this.tasklistService.updateTask(task);
 
   }
 }

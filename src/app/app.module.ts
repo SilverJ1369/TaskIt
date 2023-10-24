@@ -18,6 +18,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NotificationComponent } from './shared/notification/notification.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
     TaskListComponent,
     TaskModalComponent,
     KanbanBoardComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,

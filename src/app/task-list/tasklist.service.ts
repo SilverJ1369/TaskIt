@@ -13,6 +13,7 @@ export class TasklistService {
   ];
 
   tasklistUpdated: Subject<Task[]> = new Subject<Task[]>();
+  taskUpdated: Subject<{task: Task, action: string}> = new Subject<{task: Task, action: string}>();
 
   constructor() {}
 
@@ -22,27 +23,34 @@ export class TasklistService {
 
   saveTask(task: Task) {
     this.myTasks.push(task);
+    const action: string = "Added"
     this.tasklistUpdated.next(this.myTasks.slice());
+    this.taskUpdated.next({task, action});
   }
 
   removeTask(index: number) {
     if (index !== -1) {
+      const task = this.myTasks[index];
+      const action: string = "Removed"
       this.myTasks.splice(index, 1)
       this.tasklistUpdated.next(this.myTasks.slice());
+      this.taskUpdated.next({task, action});
     }
   }
 
-  updateTask(result: Task, status?: Status) {
+  updateTask(result: Task) {
     console.log('result from update task', result);
+    const action: string = "Edited"
 
     const task = this.myTasks.find((task) => task.id == result.id)
     if(task) {
       task.title = result.title;
       task.dueDate = result.dueDate;
       task.priority = result.priority;
-      task.status = status;
+      task.status = result.status;
       task.desc = result.desc;
       this.tasklistUpdated.next(this.myTasks.slice());
     } else return
+    this.taskUpdated.next({task, action});
   }
 }
