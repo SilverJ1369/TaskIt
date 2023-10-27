@@ -1,0 +1,23 @@
+<div class="flex-container">
+  <div class="d-flex align-center" *ngIf="hasLanded">
+    <h1>
+      <span style="color: green">Task</span>
+      <span>It</span>
+    </h1>
+    <p>This platform allows you to keep track of tasks professionally,
+      domestically, and more. Sign up today to get to work!</p>
+    <img src="" alt="taskit preview">
+    <p>Create an account to get started today.</p>
+    <button class="btn btn-success" (click)="onSignup()">Sign Up</button>
+    <p>Or</p>
+    <button class="btn btn-outline-success"><span style="color: green" (click)="onLogin()">Login</span></button>
+  </div>
+</div>
+
+<div class="signup" *ngIf="signupBool">
+  <p>here we sign up</p>
+</div>
+
+<div class="login" *ngIf="loginBool">
+  <p>here we login</p>
+</div>

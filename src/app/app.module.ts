@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NotificationComponent } from './shared/notification/notification.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { NotificationComponent } from './shared/notification/notification.compon
     TaskModalComponent,
     KanbanBoardComponent,
     NotificationComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
