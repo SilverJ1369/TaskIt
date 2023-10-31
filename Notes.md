@@ -3,7 +3,7 @@
 Todo:
 
 Landing page {
-  new modal for signup/login
+  page for signup/login
   boolean to differentiate between the two states
 
   signup {

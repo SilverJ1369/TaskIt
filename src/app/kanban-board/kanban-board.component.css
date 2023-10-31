@@ -24,6 +24,36 @@ h1 {
   border: 1px solid black;
   border-radius: 15px;
   padding: 15px;
-  margin-top: 15px;
-  background-color: lightgrey;
+  flex-grow: 1;
+  margin-bottom: 15px;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 15%;
+  border: 1px solid;
+  height: 100vh;
+  left: 0;
+}
+
+.main {
+  flex-grow: 1;
+  position: fixed;
+  left: 15%;
+  width: 100vw;
+}
+
+.btn-size {
+  size: 75%;
+}
+
+.background-reset {
+  background-color: white;
+}
+
+select, option {
+  background-color: white;
 }

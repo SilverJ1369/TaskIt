@@ -1,81 +1,90 @@
-<h1><b>Task List</b></h1>
-<div class="row">
-  <label for="filters" class="filter-label"><b>Filters: </b></label>
-  <select name="status" class="form-control form-control-sm filter-options custom-select">
-    <option>All Statuses</option>
-    <option>ToDo</option>
-    <option>In Progress</option>
-    <option>Completed</option>
-  </select>
-  <select name="date" class="form-control form-control-sm filter-options custom-select">
-    <option>Date</option>
-  </select>
-  <select name="priority" class="form-control form-control-sm filter-options custom-select">
-    <option>All Priorities</option>
-    <option>Low</option>
-    <option>Medium</option>
-    <option>High</option>
-  </select>
-  <button class="btn btn-success btn-add" (click)="openModal()">Add New Task</button>
-</div>
-<div class="d-flex flex-row notification">
-  <app-notification></app-notification>
-</div>
-<div class="task-table">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Due Date</th>
-        <th scope="col">Priority</th>
-        <th scope="col">Status</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let task of tasks; let i = index">
-        <td scope="row">{{ task.title }}</td>
-        <td>{{ task.dueDate | date: "MM/dd/yyyy" }}</td>
-        <td>{{ task.priority | titlecase }}
-          <div *ngIf="task.priority === 'low'; then lowBlock else mediumHighBlock"></div>
-            <ng-template #lowBlock>
-              <span class="material-symbols-outlined orange">
-                keyboard_double_arrow_down
-                </span>
-            </ng-template>
-            <ng-template #mediumHighBlock>
-              <div *ngIf="task.priority === 'medium'; then mediumBlock else highBlock"></div>
-              <ng-template #mediumBlock>
-                <span class="material-symbols-outlined">
-                  equal
+<div class="main-container">
+  <div class="flex-container">
+    <aside class="sidebar flex-item-fixed">
+      <app-sidebar></app-sidebar>
+    </aside>
+    <main class="main">
+      <h1><b>Task List</b></h1>
+      <div class="row">
+        <label for="filters" class="filter-label"><b>Filters: </b></label>
+        <select name="status" class="form-control form-control-sm filter-options custom-select">
+          <option>All Statuses</option>
+          <option>ToDo</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+        </select>
+        <select name="date" class="form-control form-control-sm filter-options custom-select">
+          <option>Date</option>
+        </select>
+        <select name="priority" class="form-control form-control-sm filter-options custom-select">
+          <option>All Priorities</option>
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+        </select>
+        <button class="btn btn-success btn-add" (click)="openModal()">Add New Task</button>
+      </div>
+      <div class="d-flex flex-row notification">
+        <app-notification></app-notification>
+      </div>
+      <div class="task-table">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Due Date</th>
+              <th scope="col">Priority</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of tasks; let i = index">
+              <td scope="row">{{ task.title }}</td>
+              <td>{{ task.dueDate | date: "MM/dd/yyyy" }}</td>
+              <td>{{ task.priority | titlecase }}
+                <div *ngIf="task.priority === 'low'; then lowBlock else mediumHighBlock"></div>
+                  <ng-template #lowBlock>
+                    <span class="material-symbols-outlined orange">
+                      keyboard_double_arrow_down
+                      </span>
+                  </ng-template>
+                  <ng-template #mediumHighBlock>
+                    <div *ngIf="task.priority === 'medium'; then mediumBlock else highBlock"></div>
+                    <ng-template #mediumBlock>
+                      <span class="material-symbols-outlined">
+                        equal
+                        </span>
+                    </ng-template>
+                    <ng-template #highBlock>
+                      <span class="material-symbols-outlined">
+                        keyboard_double_arrow_up
+                        </span>
+                    </ng-template>
+                  </ng-template>
+              </td>
+              <td>{{ task.status | titlecase }}</td>
+              <td>
+                <button class="btn" (click)="editTask(i)">
+                  <span class="material-symbols-outlined">
+                    visibility
                   </span>
-              </ng-template>
-              <ng-template #highBlock>
-                <span class="material-symbols-outlined">
-                  keyboard_double_arrow_up
+                </button>
+                <button class="btn">
+                  <span class="material-symbols-outlined">
+                    check_box
                   </span>
-              </ng-template>
-            </ng-template>
-        </td>
-        <td>{{ task.status | titlecase }}</td>
-        <td>
-          <button class="btn" (click)="editTask(i)">
-            <span class="material-symbols-outlined">
-              visibility
-            </span>
-          </button>
-          <button class="btn">
-            <span class="material-symbols-outlined">
-              check_box
-            </span>
-          </button>
-          <button class="btn" (click)="onRemoveTask(i)">
-            <span class="material-symbols-outlined">
-              delete
-            </span>
-          </button>
-          </td>
-      </tr>
-    </tbody>
-  </table>
+                </button>
+                <button class="btn" (click)="onRemoveTask(i)">
+                  <span class="material-symbols-outlined">
+                    delete
+                  </span>
+                </button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
 </div>
