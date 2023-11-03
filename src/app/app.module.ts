@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { NgIf } from '@angular/common';
+import { HttpClient, HttpClientModule} from '@angular/common/http'
 
 import { MatDatepickerModule} from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
@@ -45,7 +46,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MatFormFieldModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

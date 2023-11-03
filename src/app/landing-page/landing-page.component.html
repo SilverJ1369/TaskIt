@@ -1,6 +1,15 @@
 <div class="flex-container">
-  <div class="d-flex align-center" *ngIf="hasLanded">
-    <h1>
+  <div class="d-flex flex-column align-center form-container" *ngIf="hasLanded">
+    <button routerLink="/kanban"
+  routerLinkActive="active"
+  class="btn btn-success">
+    Task List
+  </button>
+  <button routerLink="/tasklist" routerLinkActive="active"
+  class="btn btn-success">
+    Kanban
+  </button>
+    <h1 class="flex-row">
       <span style="color: green">Task</span>
       <span>It</span>
     </h1>
@@ -8,25 +17,16 @@
       domestically, and more. Sign up today to get to work!</p>
     <img src="" alt="taskit preview">
     <p>Create an account to get started today.</p>
-    <button class="btn btn-success" (click)="onSignup()">Sign Up</button>
+    <button class="btn btn-success" (click)="onSignup()" style="width: 5%;">Sign Up</button>
     <p>Or</p>
-    <button class="btn btn-outline-success"><span style="color: green" (click)="onLogin()">Login</span></button>
+    <button class="btn btn-outline-success" style="width: 5%;"><span (click)="onLogin()">Login</span></button>
   </div>
 </div>
+  <div class="signup d-flex" *ngIf="signupBool">
+    <p>here we sign up</p>
+  </div>
 
-<div class="signup" *ngIf="signupBool">
-  <p>here we sign up</p>
-</div>
+  <div class="login d-flex" *ngIf="loginBool">
+    <p>here we login</p>
+  </div>
 
-<div class="login" *ngIf="loginBool">
-  <p>here we login</p>
-</div>
-<button routerLink="/kanban"
-routerLinkActive="active"
-class="btn btn-success">
-  Task List
-</button>
-<button routerLink="/tasklist" routerLinkActive="active"
-class="btn btn-success">
-  Kanban
-</button>

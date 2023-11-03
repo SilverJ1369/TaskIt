@@ -28,6 +28,11 @@ export class TasklistService {
     this.taskUpdated.next({task, action});
   }
 
+  saveTasks(tasks: Task[] | []) {
+    this.myTasks = tasks || [];
+    this.tasklistUpdated.next(this.myTasks.slice());
+  }
+
   removeTask(index: number) {
     if (index !== -1) {
       const task = this.myTasks[index];
