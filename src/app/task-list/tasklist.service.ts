@@ -1,21 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Task, Priority, Status } from './task.model';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasklistService {
-  private myTasks: Task[] = [
-    new Task(1, 'Create a New Task', new Date("10/21/2023"), Priority.low, Status.todo, 'testing description'),
-    new Task(2, 'Create a Second Task', new Date("10/21/2023"), Priority.medium, Status.inProgress, 'testing description'),
-    new Task(3, 'Create a Third Task', new Date("10/21/2023"), Priority.medium, Status.completed, 'testing description'),
-  ];
+  private myTasks: Task[] = [];
 
   tasklistUpdated: Subject<Task[]> = new Subject<Task[]>();
   taskUpdated: Subject<{task: Task, action: string}> = new Subject<{task: Task, action: string}>();
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  firebaseURL = 'https://taskit-cc808-default-rtdb.firebaseio.com/tasks.json'
+
+
+  fetchTasksFromFirebase() {
+    const myTaskSub = this.http
+      .get(this.firebaseURL, {})
+      .subscribe((res : Task[] | []) => {
+        console.log(res);
+        console.log('from fetch firebase', myTaskSub);
+
+        this.saveTasks(res);
+      })
+  }
 
   getTasks() {
     return this.myTasks.slice();
@@ -26,11 +37,13 @@ export class TasklistService {
     const action: string = "Added"
     this.tasklistUpdated.next(this.myTasks.slice());
     this.taskUpdated.next({task, action});
+    this.saveTasks(this.myTasks);
   }
 
   saveTasks(tasks: Task[] | []) {
     this.myTasks = tasks || [];
     this.tasklistUpdated.next(this.myTasks.slice());
+    this.saveTasksToFirebase(this.myTasks);
   }
 
   removeTask(index: number) {
@@ -40,6 +53,7 @@ export class TasklistService {
       this.myTasks.splice(index, 1)
       this.tasklistUpdated.next(this.myTasks.slice());
       this.taskUpdated.next({task, action});
+      this.saveTasksToFirebase(this.myTasks);
     }
   }
 
@@ -55,7 +69,22 @@ export class TasklistService {
       task.status = result.status;
       task.desc = result.desc;
       this.tasklistUpdated.next(this.myTasks.slice());
+      this.saveTasksToFirebase(this.myTasks);
     } else return
     this.taskUpdated.next({task, action});
+  }
+
+  completeTask(index: number) {
+    const task: Task = this.myTasks[index];
+    const action: string = 'Completed'
+    task.status = Status.completed;
+    this.taskUpdated.next({task, action});
+  }
+
+  saveTasksToFirebase(tasks) {
+    this.http.put(this.firebaseURL, tasks).subscribe((results) => {
+      console.log(results);
+
+    });
   }
 }

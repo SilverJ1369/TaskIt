@@ -1,5 +1,6 @@
 * {
   margin: 0;
+
 }
 
 h1 {
@@ -36,7 +37,7 @@ table {
 }
 
 .orange {
-  color: #FB8C00;
+  color: goldenrod;
 }
 
 .notification {
@@ -45,6 +46,7 @@ table {
 
 .flex-container {
   display: flex;
+  background-color: #cec9c9;
 }
 
 .sidebar {
@@ -63,4 +65,17 @@ table {
 
 .btn-size {
   size: 75%;
+}
+
+.green {
+  color: green
+}
+
+.red {
+  color: red;
+}
+
+.mat-mdc-form-field-flex {
+  background-color: white;
+  color: black;
 }

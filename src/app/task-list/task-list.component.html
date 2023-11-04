@@ -42,22 +42,22 @@
             <tr *ngFor="let task of tasks; let i = index">
               <td scope="row">{{ task.title }}</td>
               <td>{{ task.dueDate | date: "MM/dd/yyyy" }}</td>
-              <td>{{ task.priority | titlecase }}
+              <td style="padding-left: 1.5%;">
                 <div *ngIf="task.priority === 'low'; then lowBlock else mediumHighBlock"></div>
                   <ng-template #lowBlock>
-                    <span class="material-symbols-outlined orange">
+                    <span class="material-symbols-outlined green">
                       keyboard_double_arrow_down
                       </span>
                   </ng-template>
                   <ng-template #mediumHighBlock>
                     <div *ngIf="task.priority === 'medium'; then mediumBlock else highBlock"></div>
                     <ng-template #mediumBlock>
-                      <span class="material-symbols-outlined">
+                      <span class="material-symbols-outlined orange">
                         equal
                         </span>
                     </ng-template>
                     <ng-template #highBlock>
-                      <span class="material-symbols-outlined">
+                      <span class="material-symbols-outlined red">
                         keyboard_double_arrow_up
                         </span>
                     </ng-template>
@@ -70,7 +70,7 @@
                     visibility
                   </span>
                 </button>
-                <button class="btn">
+                <button class="btn" (click)="completeTask(i)">
                   <span class="material-symbols-outlined">
                     check_box
                   </span>

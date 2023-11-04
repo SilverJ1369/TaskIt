@@ -1,6 +1,6 @@
 <h1>Add a New Task</h1>
 <form class="form-group" [formGroup]="taskForm">
-  <div class="d-flex flex-row">
+  <div class="d-flex flex-row" style="background-color: transparent;">
     <div class="d-flex flex-column">
       <input
         type="text"
@@ -19,10 +19,10 @@
       </textarea>
     </div>
     <div class="d-flex flex-column">
-      <mat-form-field>
+      <mat-form-field style="background-color: transparent;">
         <mat-label>Due Date:</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="dueDate"
-        style="color: black"/>
+        style="color: black; background-color: white;"/>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker color="primary"></mat-datepicker>
       </mat-form-field>
@@ -45,8 +45,8 @@
         <option value="completed">Completed</option>
       </select>
       <div class="buttons">
-        <button class="btn btn-secondary mr-3 mat-dialog-close" (click)="onCancel()">Cancel</button>
-        <button class="btn btn-success" type="submit" (click)="onCreateTask()">{{submitButtonText}}</button>
+        <button class="btn btn-secondary mr-3 mat-dialog-close" (click)="onCancel()" style="background-color: green;">Cancel</button>
+        <button class="btn btn-success" type="submit" (click)="onCreateTask()" style="background-color:green;">{{submitButtonText}}</button>
       </div>
     </div>
   </div>

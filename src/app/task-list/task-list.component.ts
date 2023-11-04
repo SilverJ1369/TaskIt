@@ -19,7 +19,7 @@ export class TaskListComponent implements OnInit {
     public dialog: MatDialog) {}
 
   ngOnInit(): void {
-      this.tasks = this.tasklistService.getTasks();
+      this.tasklistService.fetchTasksFromFirebase();
 
       this.tasklistService.tasklistUpdated.subscribe((tasks: Task[]) => {
         this.tasks = tasks;
@@ -73,5 +73,9 @@ export class TaskListComponent implements OnInit {
         Swal.fire('Deleted!', 'Your task has been deleted.', 'success');
       }
     });
+  }
+
+  completeTask(index: number) {
+    this.tasklistService.completeTask(index);
   }
 }

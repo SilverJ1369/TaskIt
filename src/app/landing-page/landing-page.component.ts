@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,9 +8,12 @@ import { Component } from '@angular/core';
 })
 export class LandingPageComponent {
 
+  signupForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {}
+
   signupBool: boolean = false;
   loginBool: boolean = false;
-
   hasLanded: boolean = true;
 
   onSignup() {

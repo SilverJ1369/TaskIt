@@ -1,32 +1,77 @@
-<div class="flex-container">
-  <div class="d-flex flex-column align-center form-container" *ngIf="hasLanded">
-    <button routerLink="/kanban"
-  routerLinkActive="active"
-  class="btn btn-success">
-    Task List
-  </button>
-  <button routerLink="/tasklist" routerLinkActive="active"
-  class="btn btn-success">
-    Kanban
-  </button>
-    <h1 class="flex-row">
-      <span style="color: green">Task</span>
+<div class="d-flex flex-container justify-content-center" style="height: 100vh; min-height: 100vh;">
+    <div class="d-flex flex-column form-container justify-content-center mt-3" *ngIf="hasLanded">
+      <h1 class="d-flex flex-row justify-content-center mt-3" style="padding-bottom: 10px;">Welcome to&nbsp;
+        <span style="color: green;">Task</span>
+        <span>It</span>
+      </h1>
+      <div class="d-flex justify-content-center">
+        <p style="max-width: 60%;" class="text-center">This platform allows you to keep track of tasks professionally,
+          domestically, and more. Sign up today to get to work!</p>
+      </div>
+        <div class="d-flex justify-content-center">
+          <img src="../../assets/Images/landing-page-img 1.png"
+          alt="taskit preview"
+          style="width: 60%; display: block; ">
+        </div>
+        <p class="d-flex justify-content-center pb-2">Create an account to get started today.</p>
+        <div class="d-flex flex-row justify-content-center mb-2">
+          <button class="btn btn-success mr-2" (click)="onSignup()" style="width: 5%;">Sign Up</button>
+          <p class="pr-2">Or</p>
+        <button class="btn btn-outline-success" style="width: 5%;"><span (click)="onLogin()">Login</span></button>
+      </div>
+    </div>
+
+  <div class="signup d-flex flex-column form-container justify-content-center" *ngIf="signupBool">
+    <h1 class="d-flex flex-row justify-content-center" style="padding-bottom: 10px;">Welcome to&nbsp;
+      <span style="color: green;">Task</span>
       <span>It</span>
     </h1>
-    <p>This platform allows you to keep track of tasks professionally,
-      domestically, and more. Sign up today to get to work!</p>
-    <img src="" alt="taskit preview">
-    <p>Create an account to get started today.</p>
-    <button class="btn btn-success" (click)="onSignup()" style="width: 5%;">Sign Up</button>
-    <p>Or</p>
-    <button class="btn btn-outline-success" style="width: 5%;"><span (click)="onLogin()">Login</span></button>
-  </div>
-</div>
-  <div class="signup d-flex" *ngIf="signupBool">
-    <p>here we sign up</p>
+    <p class="mb-4 d-flex justify-content-center">Sign up to get things done.</p>
+    <form [formGroup]="signupForm" class="d-flex justify-content-center flex-wrap">
+      <label formControlName="fName" for="fName" style="width: 60%; padding-bottom: 5px;">First Name</label>
+      <input type="text" style="width: 60%; background-color: white;">
+      <label for="lName" style="width: 60%; padding-bottom: 5px;">Last Name</label>
+      <input type="text" style="width: 60%; background-color: white;">
+      <label for="emailAddress" style="width: 60%; padding-bottom: 5px;">Email</label>
+      <input type="text" style="width: 60%; background-color: white;">
+      <label for="password" style="width: 60%; padding-bottom: 5px;">Password</label>
+      <input type="text" style="width: 60%; background-color: white;">
+    </form>
+    <div class="d-flex flex-row justify-content-end mt-2" style="width: 60%;">
+      <p class="d-flex">Have an account?</p>
+      <a (click)="onLogin()" style="color: green;" class="ml-2">Login</a>
+      <button type="submit"
+        [disabled]="!signupForm.valid"
+        class="btn btn-success ml-3"
+        routerLink="/tasklist"
+        routerLinkActive="active">
+        Signup
+      </button>
+    </div>
   </div>
 
-  <div class="login d-flex" *ngIf="loginBool">
-    <p>here we login</p>
+  <div class="login d-flex flex-column form-container justify-content-center" *ngIf="loginBool">
+    <h1 class="d-flex flex-row justify-content-center" style="padding-bottom: 10px;">Welcome Back!</h1>
+    <p class="mb-4 d-flex justify-content-center">Let's get to work.</p>
+    <form action="" class="d-flex justify-content-center flex-wrap">
+      <label for="emailAddress" style="width: 60%; padding-bottom: 5px;">Email</label>
+      <input type="text" style="width: 60%; background-color: white;">
+      <label for="password" style="width: 60%; padding-bottom: 5px;">Password</label>
+      <input type="text" style="width: 60%; background-color: white;">
+    </form>
+    <div class="d-flex flex-row justify-content-end mt-2" style="width: 60%;">
+      <p class="d-flex">Dont' have an account?</p>
+      <a (click)="onSignup()" style="color: green;" class="ml-2">Sign up</a>
+      <button class="btn btn-success ml-3"
+        routerLink="/tasklist"
+        routerLinkActive="active">
+        Login
+      </button>
   </div>
+</div>
+
+
+
+
+
 
