@@ -20,6 +20,13 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit(): void {
       this.tasklistService.fetchTasksFromFirebase();
+      const taskCheck = this.tasklistService.getTasks();
+      if (!taskCheck) {
+        this.tasklistService.buildTasks();
+        console.log('uhoh');
+
+      }
+
 
       this.tasklistService.tasklistUpdated.subscribe((tasks: Task[]) => {
         this.tasks = tasks;

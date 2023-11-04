@@ -14,8 +14,8 @@ export class TasklistService {
 
   constructor(private http: HttpClient) {}
 
-  firebaseURL = 'https://taskit-cc808-default-rtdb.firebaseio.com/tasks.json'
-
+  firebaseURL = 'https://taskit-cc808-default-rtdb.firebaseio.com/tasks.json';
+  taskGeneratorAPIURL = 'https://retoolapi.dev/T7m4GO/data';
 
   fetchTasksFromFirebase() {
     const myTaskSub = this.http
@@ -86,5 +86,16 @@ export class TasklistService {
       console.log(results);
 
     });
+  }
+
+  buildTasks() {
+    const myTaskSub = this.http
+      .get(this.taskGeneratorAPIURL, {})
+      .subscribe((res : Task[] | []) => {
+        console.log(res);
+
+        console.log('from build tasks', myTaskSub);
+        this.saveTasks(res);
+      })
   }
 }
