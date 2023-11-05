@@ -24,10 +24,7 @@ export class TaskListComponent implements OnInit {
       if (!taskCheck) {
         this.tasklistService.buildTasks();
         console.log('uhoh');
-
       }
-
-
       this.tasklistService.tasklistUpdated.subscribe((tasks: Task[]) => {
         this.tasks = tasks;
       })
