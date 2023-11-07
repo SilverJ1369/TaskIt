@@ -27,15 +27,57 @@
       <span>It</span>
     </h1>
     <p class="mb-4 d-flex justify-content-center">Sign up to get things done.</p>
-    <form [formGroup]="signupForm" class="d-flex justify-content-center flex-wrap">
-      <label formControlName="fName" for="fName" style="width: 60%; padding-bottom: 5px;">First Name</label>
-      <input type="text" style="width: 60%; background-color: white;">
-      <label for="lName" style="width: 60%; padding-bottom: 5px;">Last Name</label>
-      <input type="text" style="width: 60%; background-color: white;">
-      <label for="emailAddress" style="width: 60%; padding-bottom: 5px;">Email</label>
-      <input type="text" style="width: 60%; background-color: white;">
-      <label for="password" style="width: 60%; padding-bottom: 5px;">Password</label>
-      <input type="text" style="width: 60%; background-color: white;">
+    <form
+      #signupForm="ngForm"
+      (ngSubmit)="signup(signupForm)"
+      class="d-flex justify-content-center flex-wrap">
+      <label
+        for="fName"
+        style="width: 60%; padding-bottom: 5px;">First Name</label>
+      <input
+        name="fName"
+        id="fName"
+        class="form-control"
+        type="text"
+        style="width: 60%; background-color: white;"
+        required
+        ngModel>
+      <!-- <span class="flex-row help-block text-danger">Please enter a valid First Name!</span> -->
+      <label
+        for="lName"
+        style="width: 60%; padding-bottom: 5px;">Last Name</label>
+      <input
+        name="lName"
+        id="lName"
+        class="form-control"
+        type="text"
+        style="width: 60%; background-color: white;"
+        required
+        ngModel>
+      <label
+        for="emailAddress"
+        style="width: 60%; padding-bottom: 5px;">Email</label>
+      <input
+        name="emailAddress"
+        id="emailAddress"
+        class="form-control"
+        type="email"
+        style="width: 60%; background-color: white;"
+        required
+        ngModel
+        email>
+      <label
+        for="password"
+        style="width: 60%; padding-bottom: 5px;">Password</label>
+      <input
+        name="password"
+        id="password"
+        class="form-control"
+        type="password"
+        style="width: 60%; background-color: white;"
+        minlength="6"
+        required
+        ngModel>
     </form>
     <div class="d-flex flex-row justify-content-end mt-2" style="width: 60%;">
       <p class="d-flex">Have an account?</p>
@@ -53,18 +95,19 @@
   <div class="login d-flex flex-column form-container justify-content-center" *ngIf="loginBool">
     <h1 class="d-flex flex-row justify-content-center" style="padding-bottom: 10px;">Welcome Back!</h1>
     <p class="mb-4 d-flex justify-content-center">Let's get to work.</p>
-    <form action="" class="d-flex justify-content-center flex-wrap">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="d-flex justify-content-center flex-wrap">
       <label for="emailAddress" style="width: 60%; padding-bottom: 5px;">Email</label>
-      <input type="text" style="width: 60%; background-color: white;">
+      <input formControlName="emailAddress"  type="text" style="width: 60%; background-color: white;">
       <label for="password" style="width: 60%; padding-bottom: 5px;">Password</label>
-      <input type="text" style="width: 60%; background-color: white;">
+      <input formControlName="password"  type="text" style="width: 60%; background-color: white;">
     </form>
     <div class="d-flex flex-row justify-content-end mt-2" style="width: 60%;">
       <p class="d-flex">Dont' have an account?</p>
       <a (click)="onSignup()" style="color: green;" class="ml-2">Sign up</a>
       <button class="btn btn-success ml-3"
         routerLink="/tasklist"
-        routerLinkActive="active">
+        routerLinkActive="active"
+        [disabled]="!loginForm.valid">
         Login
       </button>
   </div>

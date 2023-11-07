@@ -1,5 +1,6 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,6 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class LandingPageComponent {
 
   signupForm: FormGroup;
+  loginForm: FormGroup;
 
   constructor(private fb: FormBuilder) {}
 
@@ -26,6 +28,14 @@ export class LandingPageComponent {
     this.loginBool = true;
     this.hasLanded = false;
     this.signupBool = false;
+  }
+
+  signup(form: NgForm) {
+
+  }
+
+  login() {
+
   }
 
 }
