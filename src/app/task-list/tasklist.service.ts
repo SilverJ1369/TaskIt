@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TasklistService {
   private myTasks: Task[] = [];
+  selectedStatus: Status = Status.todo;
 
   tasklistUpdated: Subject<Task[]> = new Subject<Task[]>();
   taskUpdated: Subject<{task: Task, action: string}> = new Subject<{task: Task, action: string}>();

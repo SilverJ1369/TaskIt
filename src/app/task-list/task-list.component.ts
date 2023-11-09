@@ -13,6 +13,11 @@ import Swal from 'sweetalert2';
 })
 export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
+  selectedStatus: Status = null;
+  currentStatus: typeof Status = Status;
+  filteredTask: Task[];
+  selectedPriority : Priority = null;
+  currentPriority: typeof Priority = Priority;
 
   constructor(
     private tasklistService: TasklistService,
@@ -82,4 +87,5 @@ export class TaskListComponent implements OnInit {
   completeTask(index: number) {
     this.tasklistService.completeTask(index);
   }
+
 }

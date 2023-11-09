@@ -21,6 +21,7 @@ import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NotificationComponent } from './shared/notification/notification.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { TaskFilterPipe } from './task-list/task-filter-pipe.pipe';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     KanbanBoardComponent,
     NotificationComponent,
     LandingPageComponent,
+    TaskFilterPipe,
   ],
   imports: [
     BrowserModule,

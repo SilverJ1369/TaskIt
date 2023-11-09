@@ -7,20 +7,20 @@
       <h1><b>Task List</b></h1>
       <div class="row mb-3">
         <label for="filters" class="filter-label"><b>Filters: </b></label>
-        <select name="status" class="form-control form-control-sm filter-options custom-select">
-          <option>All Statuses</option>
-          <option>ToDo</option>
-          <option>In Progress</option>
-          <option>Completed</option>
+        <select [(ngModel)]="selectedStatus" name="status" class="form-control form-control-sm filter-options custom-select">
+          <option [ngValue]="null" selected>All Statuses</option>
+          <option [ngValue]="currentStatus.todo">Todo</option>
+          <option [ngValue]="currentStatus.inProgress">In Progress</option>
+          <option [ngValue]="currentStatus.completed">Completed</option>
         </select>
         <select name="date" class="form-control form-control-sm filter-options custom-select">
           <option>Date</option>
         </select>
-        <select name="priority" class="form-control form-control-sm filter-options custom-select">
-          <option>All Priorities</option>
-          <option>Low</option>
-          <option>Medium</option>
-          <option>High</option>
+        <select [(ngModel)]="selectedPriority" name="priority" class="form-control form-control-sm filter-options custom-select">
+          <option [ngValue]="null" selected>All Priorities</option>
+          <option [ngValue]="currentPriority.low">Low</option>
+          <option [ngValue]="currentPriority.medium">Medium</option>
+          <option [ngValue]="currentPriority.high">High</option>
         </select>
         <button class="btn btn-success btn-add" (click)="openModal()">Add New Task</button>
       </div>
@@ -39,7 +39,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let task of tasks; let i = index">
+            <tr *ngFor="let task of tasks | taskFilter : selectedStatus : selectedPriority; let i = index">
               <td scope="row">{{ task.title }}</td>
               <td>{{ task.dueDate | date: "MM/dd/yyyy" }}</td>
               <td style="padding-left: 1.5%;">
