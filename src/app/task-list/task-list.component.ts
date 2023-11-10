@@ -22,6 +22,7 @@ export class TaskListComponent implements OnInit {
   currentDate: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate()))
   currentWeek: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate() + 7))
   currentMonth: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate() + 30))
+currentQuarter: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate() + 90))
 
 
   constructor(
