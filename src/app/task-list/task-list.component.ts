@@ -18,12 +18,20 @@ export class TaskListComponent implements OnInit {
   filteredTask: Task[];
   selectedPriority : Priority = null;
   currentPriority: typeof Priority = Priority;
+  selectedDate: Date = new Date();
+  currentDate: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate()))
+  currentWeek: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate() + 7))
+  currentMonth: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate() + 30))
+
 
   constructor(
     private tasklistService: TasklistService,
     public dialog: MatDialog) {}
 
   ngOnInit(): void {
+    console.log('current date: ', this.currentDate, 'current week: ', this.currentWeek, 'current month: ', this.currentMonth);
+
+      this.selectedDate = null;
       this.tasklistService.fetchTasksFromFirebase();
       const taskCheck = this.tasklistService.getTasks();
       if (!taskCheck) {

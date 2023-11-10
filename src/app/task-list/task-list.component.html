@@ -13,8 +13,11 @@
           <option [ngValue]="currentStatus.inProgress">In Progress</option>
           <option [ngValue]="currentStatus.completed">Completed</option>
         </select>
-        <select name="date" class="form-control form-control-sm filter-options custom-select">
-          <option>Date</option>
+        <select [(ngModel)]="selectedDate" name="date" class="form-control form-control-sm filter-options custom-select">
+          <option [ngValue]="null" selected>All Dates</option>
+          <option [ngValue]="currentDate">Today</option>
+          <option [ngValue]="currentWeek">Next Seven Days</option>
+          <option [ngValue]="currentMonth">Next Thirty Days</option>
         </select>
         <select [(ngModel)]="selectedPriority" name="priority" class="form-control form-control-sm filter-options custom-select">
           <option [ngValue]="null" selected>All Priorities</option>
@@ -39,7 +42,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let task of tasks | taskFilter : selectedStatus : selectedPriority; let i = index">
+            <tr *ngFor="let task of tasks | taskFilter : selectedStatus : selectedPriority : selectedDate; let i = index">
               <td scope="row">{{ task.title }}</td>
               <td>{{ task.dueDate | date: "MM/dd/yyyy" }}</td>
               <td style="padding-left: 1.5%;">
