@@ -7,9 +7,7 @@ import { filter } from 'rxjs';
 })
 export class TaskFilterPipe implements PipeTransform {
 
-
   transform(task: Task[], selectedStatus: Status, selectedPriority: Priority, selectedDate: Date): any {
-    console.log(selectedDate);
     return task.filter((task) => {
       let filterDate: Date = new Date(task.dueDate);
       let today: Date = new Date();
@@ -23,9 +21,7 @@ export class TaskFilterPipe implements PipeTransform {
        } else if (selectedStatus === null && selectedDate === null) {
         const priorityMatch = task.priority === selectedPriority;
         console.log('third if');
-        console.log(selectedDate);
-        const dateMatch = task.dueDate == selectedDate;
-        return priorityMatch && dateMatch;
+        return priorityMatch
       } else if (selectedPriority === null && selectedDate === null) {
         const statusMatch = task.status === selectedStatus;
         console.log('fourth if');

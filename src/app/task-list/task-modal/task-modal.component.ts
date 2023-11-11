@@ -53,7 +53,6 @@ export class TaskModalComponent implements OnInit {
       this.editTask();
     }
 
-
   }
     editTask() {
       const task: Task = this.taskForm.value;

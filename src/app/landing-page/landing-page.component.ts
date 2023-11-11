@@ -1,6 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,10 +10,12 @@ import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 })
 export class LandingPageComponent {
 
+
   signupForm: FormGroup;
   loginForm: FormGroup;
+  errMsg: string = null;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   signupBool: boolean = false;
   loginBool: boolean = false;
@@ -31,11 +34,34 @@ export class LandingPageComponent {
   }
 
   signup(form: NgForm) {
+    if (!form.valid) return;
+    const {fName, lName, email, password} = form.value;
 
+    this.authService.signUp(email, password).subscribe(
+      (res) => {
+        console.log('Auth response Success: ', res);
+      },
+      (err) => {
+        console.error('Auth Res Error:', err);
+        this.errMsg = err.message;
+      }
+    )
+    form.reset();
   }
 
-  login() {
+  login(form: NgForm) {
+    if (!form.valid) return;
+    const {fName, lName, email, password} = form.value;
 
+    this.authService.signIn(email, password).subscribe(
+      (res) => {
+        console.log('Auth response Success: ', res);
+      },
+      (err) => {
+        console.error('Auth Res Error:', err);
+        this.errMsg = err.message;
+      }
+    )
   }
 
 }

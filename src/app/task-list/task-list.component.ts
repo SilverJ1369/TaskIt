@@ -22,8 +22,7 @@ export class TaskListComponent implements OnInit {
   currentDate: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate()))
   currentWeek: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate() + 7))
   currentMonth: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate() + 30))
-currentQuarter: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate() + 90))
-
+  currentQuarter: Date = new Date(this.selectedDate.setDate(this.selectedDate.getDate() + 90))
 
   constructor(
     private tasklistService: TasklistService,
@@ -68,8 +67,6 @@ currentQuarter: Date = new Date(this.selectedDate.setDate(this.selectedDate.getD
     })
     console.log('from edit task',tasksToEdit[index]);
     console.log('data', dialogRef);
-
-
   }
 
   onDelete(index: number) {
