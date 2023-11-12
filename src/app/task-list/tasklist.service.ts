@@ -1,33 +1,44 @@
 import { Injectable } from '@angular/core';
-import { Task, Priority, Status } from './task.model';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Task, Status } from './task.model';
+import { Subject, exhaustMap, map, take, tap } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { AuthService } from '../landing-page/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasklistService {
   private myTasks: Task[] = [];
-  selectedStatus: Status = Status.todo;
 
   tasklistUpdated: Subject<Task[]> = new Subject<Task[]>();
   taskUpdated: Subject<{task: Task, action: string}> = new Subject<{task: Task, action: string}>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   firebaseURL = 'https://taskit-cc808-default-rtdb.firebaseio.com/tasks.json';
   taskGeneratorAPIURL = 'https://retoolapi.dev/T7m4GO/data';
 
   fetchTasksFromFirebase() {
-    const myTaskSub = this.http
-      .get(this.firebaseURL, {})
-      .subscribe((res : Task[] | []) => {
-        console.log(res);
-        console.log('from fetch firebase', myTaskSub);
+    console.log('fetching from firebase', new Date());
 
-        this.saveTasks(res);
+    return this.authService.currentUser.pipe(
+      take(1),
+      exhaustMap((user) => {
+        return this.http
+      .get<Task[]>(this.firebaseURL, {
+        params: new HttpParams().set('auth', user.token),
       })
-  }
+      .pipe(
+        tap((tasks) => {
+          console.log('tap tasks', tasks);
+        }),
+        // map((tasks) => {
+        //   if (!tasks) return [];
+        // })
+      )
+      })
+    )
+    }
 
   getTasks() {
     return this.myTasks.slice();
@@ -43,6 +54,8 @@ export class TasklistService {
 
   saveTasks(tasks: Task[] | []) {
     this.myTasks = tasks || [];
+    console.log('save tasks method', this.myTasks);
+
     this.tasklistUpdated.next(this.myTasks.slice());
     this.saveTasksToFirebase(this.myTasks);
   }

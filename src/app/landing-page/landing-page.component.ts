@@ -2,7 +2,8 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { AuthService } from './auth.service';
-
+import { Router } from '@angular/router';
+import { timestamp } from 'rxjs';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -10,12 +11,13 @@ import { AuthService } from './auth.service';
 })
 export class LandingPageComponent {
 
-
   signupForm: FormGroup;
   loginForm: FormGroup;
   errMsg: string = null;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private fb: FormBuilder,
+              private authService: AuthService,
+              private router: Router) {}
 
   signupBool: boolean = false;
   loginBool: boolean = false;
@@ -39,7 +41,10 @@ export class LandingPageComponent {
 
     this.authService.signUp(email, password).subscribe(
       (res) => {
+        if (this.errMsg) this.errMsg = null;
         console.log('Auth response Success: ', res);
+
+        this.router.navigate(['tasklist'])
       },
       (err) => {
         console.error('Auth Res Error:', err);
@@ -51,17 +56,36 @@ export class LandingPageComponent {
 
   login(form: NgForm) {
     if (!form.valid) return;
+    console.log('logging in', new Date());
+
     const {fName, lName, email, password} = form.value;
 
-    this.authService.signIn(email, password).subscribe(
-      (res) => {
+    this.authService.signIn(email, password).subscribe({
+      next: (res) => {
+        if (this.errMsg) this.errMsg = null;
         console.log('Auth response Success: ', res);
+
+        this.router.navigate(['tasklist']);
       },
-      (err) => {
+      error: (err) => {
         console.error('Auth Res Error:', err);
         this.errMsg = err.message;
       }
-    )
+    })
+
+
+    // .subscribe(
+    //   (res) => {
+    //     if (this.errMsg) this.errMsg = null;
+    //     console.log('Auth response Success: ', res);
+
+    //     // this.router.navigate(['tasklist']);
+    //   },
+    //   (err) => {
+    //     console.error('Auth Res Error:', err);
+    //     this.errMsg = err.message;
+    //   }
+    // )
   }
 
 }

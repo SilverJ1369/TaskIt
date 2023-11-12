@@ -15,7 +15,7 @@ export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
   selectedStatus: Status = null;
   currentStatus: typeof Status = Status;
-  filteredTask: Task[];
+  // filteredTask: Task[];
   selectedPriority : Priority = null;
   currentPriority: typeof Priority = Priority;
   selectedDate: Date = new Date();
@@ -26,18 +26,24 @@ export class TaskListComponent implements OnInit {
 
   constructor(
     private tasklistService: TasklistService,
-    public dialog: MatDialog) {}
+    public dialog: MatDialog,) {}
 
   ngOnInit(): void {
-    console.log('current date: ', this.currentDate, 'current week: ', this.currentWeek, 'current month: ', this.currentMonth);
 
       this.selectedDate = null;
-      this.tasklistService.fetchTasksFromFirebase();
-      const taskCheck = this.tasklistService.getTasks();
-      if (!taskCheck) {
-        this.tasklistService.buildTasks();
-        console.log('uhoh');
-      }
+      this.tasklistService.fetchTasksFromFirebase().subscribe({
+        next: (tasks) => {
+          this.tasks = tasks;
+          console.log('tasks', tasks);
+
+          const taskCheck = tasks.length > 0;
+          if (!taskCheck) {
+            this.tasklistService.buildTasks();
+            console.log('uhoh');
+          }
+        }
+      });
+
       this.tasklistService.tasklistUpdated.subscribe((tasks: Task[]) => {
         this.tasks = tasks;
       })
