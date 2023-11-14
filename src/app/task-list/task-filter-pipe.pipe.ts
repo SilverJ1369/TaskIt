@@ -11,19 +11,15 @@ export class TaskFilterPipe implements PipeTransform {
       let filterDate: Date = new Date(task.dueDate);
       let today: Date = new Date();
       if (selectedStatus === null && selectedPriority === null && selectedDate === null) {
-        console.log('first if');
         return task;
        } else if (selectedStatus === null && selectedPriority === null) {
         const dateMatch = filterDate <= selectedDate && filterDate.getDate() >= today.getDate();
-        console.log('second if', typeof filterDate, dateMatch);
         return dateMatch;
        } else if (selectedStatus === null && selectedDate === null) {
         const priorityMatch = task.priority === selectedPriority;
-        console.log('third if');
         return priorityMatch
       } else if (selectedPriority === null && selectedDate === null) {
         const statusMatch = task.status === selectedStatus;
-        console.log('fourth if');
         return statusMatch;
       } else if (selectedPriority === null) {
         const statusMatch = task.status === selectedStatus;
@@ -41,7 +37,6 @@ export class TaskFilterPipe implements PipeTransform {
         const priorityMatch = task.priority === selectedPriority;
         const statusMatch = task.status === selectedStatus;
         const dateMatch = filterDate <= selectedDate && filterDate.getDate() >= today.getDate();
-        console.log('last else');
         return priorityMatch && statusMatch && dateMatch;
       }
     })

@@ -282,18 +282,18 @@
         },
         {
           "file": "src/app/task-list/task-filter-pipe.pipe.ts",
-          "hash": "3544252604358024508",
+          "hash": "14085196153949588346",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
           "file": "src/app/task-list/task-list.component.css",
-          "hash": "2214627233318170359"
+          "hash": "12007874123783022479"
         },
         {
           "file": "src/app/task-list/task-list.component.html",
-          "hash": "11336714924323002887"
+          "hash": "697700025636506813"
         },
         {
           "file": "src/app/task-list/task-list.component.spec.ts",
@@ -304,7 +304,7 @@
         },
         {
           "file": "src/app/task-list/task-list.component.ts",
-          "hash": "1943932798059281642",
+          "hash": "3129174643701234605",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/material",
@@ -343,7 +343,7 @@
         },
         {
           "file": "src/app/task-list/tasklist.service.ts",
-          "hash": "12264314833956129515",
+          "hash": "826016581881069897",
           "deps": [
             "npm:@angular/core",
             "npm:rxjs",

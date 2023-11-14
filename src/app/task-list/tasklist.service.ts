@@ -19,8 +19,6 @@ export class TasklistService {
   taskGeneratorAPIURL = 'https://retoolapi.dev/T7m4GO/data';
 
   fetchTasksFromFirebase() {
-    console.log('fetching from firebase', new Date());
-
     return this.authService.currentUser.pipe(
       take(1),
       exhaustMap((user) => {
@@ -31,7 +29,6 @@ export class TasklistService {
       .pipe(
         tap((tasks) => {
           this.myTasks = tasks;
-          console.log('tap tasks', tasks);
         }),
       )
       })
@@ -52,7 +49,6 @@ export class TasklistService {
 
   saveTasks(tasks: Task[] | []) {
     this.myTasks = tasks || [];
-    console.log('save tasks method', this.myTasks);
 
     this.tasklistUpdated.next(this.myTasks.slice());
     this.saveTasksToFirebase(this.myTasks);
@@ -70,7 +66,6 @@ export class TasklistService {
   }
 
   updateTask(result: Task) {
-    console.log('result from update task', result);
     const action: string = "Edited"
 
     const task = this.myTasks.find((task) => task.id == result.id)
@@ -95,7 +90,7 @@ export class TasklistService {
 
   saveTasksToFirebase(tasks) {
     this.http.put(this.firebaseURL, tasks).subscribe((results) => {
-      console.log(results);
+      // console.log(results);
 
     });
   }

@@ -26,7 +26,8 @@
           <option [ngValue]="currentPriority.medium">Medium</option>
           <option [ngValue]="currentPriority.high">High</option>
         </select>
-        <button class="btn btn-success btn-add" (click)="openModal()">Add New Task</button>
+        <button class="btn btn-success btn-add" style="margin-left: 20%;" (click)="openModal()">Add New Task</button>
+        <button class="btn btn-success btn-add ml-2" (click)="openBuildTasks()">Rebuild tasks from API</button>
       </div>
       <div class="d-flex flex-row notification">
         <app-notification></app-notification>

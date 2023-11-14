@@ -32,12 +32,10 @@ export class TaskListComponent implements OnInit {
       this.tasklistService.fetchTasksFromFirebase().subscribe({
         next: (tasks) => {
           this.tasks = tasks;
-          console.log('tasks', tasks);
 
           const taskCheck = tasks.length > 0;
           if (!taskCheck) {
             this.tasklistService.buildTasks();
-            console.log('uhoh');
           }
         }
       });
@@ -69,8 +67,6 @@ export class TaskListComponent implements OnInit {
         desc: tasksToEdit[index].desc
       }
     })
-    console.log('from edit task',tasksToEdit[index]);
-    console.log('data', dialogRef);
   }
 
   onDelete(index: number) {
@@ -96,6 +92,10 @@ export class TaskListComponent implements OnInit {
 
   completeTask(index: number) {
     this.tasklistService.completeTask(index);
+  }
+
+  openBuildTasks() {
+    this.tasklistService.buildTasks();
   }
 
 }
