@@ -1,9 +1,7 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-import { timestamp } from 'rxjs';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',

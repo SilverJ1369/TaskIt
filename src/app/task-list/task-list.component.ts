@@ -3,7 +3,6 @@ import { Priority, Status, Task } from './task.model';
 import { TasklistService } from './tasklist.service';
 import { TaskModalComponent } from './task-modal/task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogModule } from '@angular/cdk/dialog';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +14,6 @@ export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
   selectedStatus: Status = null;
   currentStatus: typeof Status = Status;
-  // filteredTask: Task[];
   selectedPriority : Priority = null;
   currentPriority: typeof Priority = Priority;
   selectedDate: Date = new Date();

@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Priority, Status, Task } from './task.model';
-import { filter } from 'rxjs';
 
 @Pipe({
   name: 'taskFilter'

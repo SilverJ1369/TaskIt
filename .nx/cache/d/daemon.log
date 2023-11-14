@@ -1,0 +1,6 @@
+[NX Daemon Server] - 2023-11-13T23:33:54.191Z - Started listening on: \\.\pipe\nx\C:\Users\Silve\AppData\Local\Temp\d6decda7edd2d0a0e43e\d.sock
+[NX Daemon Server] - 2023-11-13T23:33:54.195Z - [WATCHER]: Subscribed to changes within: d:\Code-Labs\Angular\Day-12\TaskIt (native)
+[NX Daemon Server] - 2023-11-13T23:33:54.200Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2023-11-13T23:33:54.203Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2023-11-13T23:33:54.203Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2023-11-13T23:33:54.205Z - [REQUEST]: Client Request for Project Graph Received

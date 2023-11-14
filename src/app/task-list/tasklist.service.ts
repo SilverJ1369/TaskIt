@@ -32,9 +32,6 @@ export class TasklistService {
         tap((tasks) => {
           console.log('tap tasks', tasks);
         }),
-        // map((tasks) => {
-        //   if (!tasks) return [];
-        // })
       )
       })
     )
