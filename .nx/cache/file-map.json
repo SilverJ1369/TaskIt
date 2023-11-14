@@ -375,7 +375,7 @@
         },
         {
           "file": "src/styles.css",
-          "hash": "9845241767251149127"
+          "hash": "1441861700048246355"
         },
         {
           "file": "tsconfig.app.json",
@@ -391,11 +391,23 @@
         },
         {
           "file": ".github/workflows/firebase-hosting-pull-request.yml",
-          "hash": "2036406698943752889"
+          "hash": "15542286366046891592"
         },
         {
           "file": ".github/workflows/firebase-hosting-merge.yml",
-          "hash": "6405394121749943151"
+          "hash": "8919698116755799444"
+        },
+        {
+          "file": "firebase.json",
+          "hash": "1242152455500731075"
+        },
+        {
+          "file": ".firebaserc",
+          "hash": "10138157629000510996"
+        },
+        {
+          "file": ".firebase/hosting.ZGlzdFx0YXNrLWl0.cache",
+          "hash": "14881507688436315361"
         }
       ]
     }
