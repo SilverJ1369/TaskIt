@@ -30,6 +30,7 @@ export class TasklistService {
       })
       .pipe(
         tap((tasks) => {
+          this.myTasks = tasks;
           console.log('tap tasks', tasks);
         }),
       )
