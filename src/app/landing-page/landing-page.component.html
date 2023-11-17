@@ -21,7 +21,7 @@
       </div>
     </div>
 
-  <div class="signup d-flex flex-column form-container justify-content-center" *ngIf="signupBool">
+  <div class="signup d-flex flex-column form-container" *ngIf="signupBool">
     <h1 class="d-flex flex-row justify-content-center" style="padding-bottom: 10px;">Welcome to&nbsp;
       <span style="color: green;">Task</span>
       <span>It</span>
@@ -30,11 +30,11 @@
     <form
       (ngSubmit)="signup(signupForm)"
       #signupForm="ngForm"
-      class="d-flex justify-content-center flex-wrap">
-      <label
+      class="d-flex justify-content-center flex-wrap flex-column align-items-center">
+        <label
         for="fName"
         style="width: 60%; padding-bottom: 5px;">First Name</label>
-      <input
+        <input
         name="fName"
         #fNameRef="ngModel"
         id="fName"
@@ -43,6 +43,9 @@
         style="width: 60%; background-color: white;"
         required
         ngModel>
+        <span
+          class="help-block text-danger flex-row"
+          *ngIf="!fNameRef.valid && fNameRef.touched">Please enter your First Name!</span>
       <!-- <span class="flex-row help-block text-danger">Please enter a valid First Name!</span> -->
       <label
         for="lName"
@@ -56,6 +59,9 @@
         style="width: 60%; background-color: white;"
         required
         ngModel>
+        <span
+          class="help-block text-danger flex-row"
+          *ngIf="!lNameRef.valid && lNameRef.touched">Please enter your Last Name!</span>
       <label
         for="emailAddress"
         style="width: 60%; padding-bottom: 5px;">Email</label>
@@ -69,6 +75,9 @@
         required
         ngModel
         email>
+        <span
+          class="help-block text-danger flex-row"
+          *ngIf="!emailRef.valid && emailRef.touched">Please enter a valid Email Address!</span>
       <label
         for="password"
         style="width: 60%; padding-bottom: 5px;">Password</label>
@@ -82,6 +91,9 @@
         minlength="6"
         required
         ngModel>
+        <span
+          class="help-block text-danger flex-row"
+          *ngIf="!passwordRef.valid && passwordRef.touched">Password needs to be at least 6 characters!</span>
 
         <div class="d-flex flex-row justify-content-end mt-2" style="width: 60%;">
           <p class="d-flex">Have an account?</p>
@@ -102,7 +114,7 @@
     <form
       (ngSubmit)="login(loginForm)"
       #loginForm="ngForm"
-      class="d-flex justify-content-center flex-wrap">
+      class="d-flex justify-content-center flex-column flex-wrap align-items-center">
       <label for="emailAddress" style="width: 60%; padding-bottom: 5px;">Email</label>
       <input
         name="email"
@@ -113,6 +125,9 @@
         required
         ngModel
         email>
+        <span
+          class="help-block text-danger flex-row"
+          *ngIf="!emailRef.valid && emailRef.touched">Please enter a valid Email Address!</span>
       <label for="password" style="width: 60%; padding-bottom: 5px;">Password</label>
       <input
         name="password"
@@ -123,11 +138,14 @@
         minlength="6"
         required
         ngModel>
+        <span
+          class="help-block text-danger flex-row"
+          *ngIf="!passwordRef.valid && passwordRef.touched">Please enter your password!</span>
 
     <div class="d-flex flex-row justify-content-end mt-2" style="width: 60%;">
       <p class="d-flex">Dont' have an account?</p>
       <a (click)="onSignup()" style="color: green;" class="ml-2">Sign up</a>
-      <button 
+      <button
         type="submit"
         class="btn btn-success ml-3"
         [disabled]="!loginForm.valid">

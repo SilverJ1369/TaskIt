@@ -20,7 +20,6 @@ h1 {
   margin: 10px;
 }
 
-
-
-
-
+.mat-mdc-form-field-infix {
+  padding-top: 40px;
+}
