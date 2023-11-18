@@ -11,14 +11,16 @@
     routerLinkActive="active">Kanban Board</button>
   </div>
   <div class="genInfo">
-    <div class="d-flex justify-content-between border">
-      <span class="material-symbols-outlined">
+    <div class="d-flex border flex-row">
+      <span class="material-symbols-outlined justify-content-start">
         account_circle
         </span>
-        <p>Account Name</p>
-      <span class="material-symbols-outlined ml-auto">
-        logout
-        </span>
+        <p>{{ email }}</p>
+      <button class="btn d-flex justify-content-end ml-auto" (click)="onLogout()">
+        <span class="material-symbols-outlined">
+          logout
+          </span>
+      </button>
     </div>
   </div>
 </div>

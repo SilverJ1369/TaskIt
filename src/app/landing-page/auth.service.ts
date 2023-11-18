@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, tap } from "rxjs";
 import { User } from "./user.model";
+import { Router } from "@angular/router";
 
 
 const AUTH_API_KEY = "AIzaSyD8vJlpFMh7dLpgP287escs0qqAnFi_PI4";
@@ -25,9 +26,9 @@ export interface AuthResponseData {
 })
 
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  currentUser = new BehaviorSubject<User>(null);
+  currentUser: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   userToken: string = null;
 
   signUp(email: string, password: string) {
@@ -63,7 +64,12 @@ export class AuthService {
     const expDate = new Date(new Date().getTime() + expiresIn * 1000);
     const formUser = new User(email, userId, token, expDate);
     this.currentUser.next(formUser);
+    localStorage.setItem("userData", JSON.stringify(formUser));
+  }
 
-    localStorage.setItem("userDate", JSON.stringify(formUser));
+  logout() {
+    this.currentUser.next(null);
+    localStorage.removeItem("userData");
+    this.router.navigate(["/landing-page"]);
   }
 }

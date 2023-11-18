@@ -24,7 +24,6 @@ export class KanbanBoardComponent implements OnInit {
 
   onSave(id: number, status: Status) {
     const newStatus = status
-
     const task = this.tasks.find((task) => task.id === id)
     this.tasklistService.updateTask(task);
 
