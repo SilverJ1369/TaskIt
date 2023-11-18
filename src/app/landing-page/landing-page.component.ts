@@ -40,12 +40,10 @@ export class LandingPageComponent {
     this.authService.signUp(email, password).subscribe(
       (res) => {
         if (this.errMsg) this.errMsg = null;
-        console.log('Auth response Success: ', res);
 
         this.router.navigate(['tasklist'])
       },
       (err) => {
-        console.error('Auth Res Error:', err);
         this.errMsg = err.message;
       }
     )
@@ -54,36 +52,19 @@ export class LandingPageComponent {
 
   login(form: NgForm) {
     if (!form.valid) return;
-    console.log('logging in', new Date());
 
     const {fName, lName, email, password} = form.value;
 
     this.authService.signIn(email, password).subscribe({
       next: (res) => {
         if (this.errMsg) this.errMsg = null;
-        console.log('Auth response Success: ', res);
 
         this.router.navigate(['tasklist']);
       },
       error: (err) => {
-        console.error('Auth Res Error:', err);
         this.errMsg = err.message;
       }
     })
-
-
-    // .subscribe(
-    //   (res) => {
-    //     if (this.errMsg) this.errMsg = null;
-    //     console.log('Auth response Success: ', res);
-
-    //     // this.router.navigate(['tasklist']);
-    //   },
-    //   (err) => {
-    //     console.error('Auth Res Error:', err);
-    //     this.errMsg = err.message;
-    //   }
-    // )
   }
 
 }

@@ -31,7 +31,6 @@ export class AuthService {
   userToken: string = null;
 
   signUp(email: string, password: string) {
-    console.log(SIGN_UP_URL, email, password, AUTH_API_KEY);
     return this.http.post<AuthResponseData>(SIGN_UP_URL + AUTH_API_KEY, {
       email,
       password,
@@ -64,7 +63,6 @@ export class AuthService {
     const expDate = new Date(new Date().getTime() + expiresIn * 1000);
     const formUser = new User(email, userId, token, expDate);
     this.currentUser.next(formUser);
-    console.log('handle auth user: ', formUser, new Date());
 
     localStorage.setItem("userDate", JSON.stringify(formUser));
   }

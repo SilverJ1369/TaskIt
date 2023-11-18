@@ -49,7 +49,6 @@ export class TasklistService {
 
   saveTasks(tasks: Task[] | []) {
     this.myTasks = tasks || [];
-
     this.tasklistUpdated.next(this.myTasks.slice());
     this.saveTasksToFirebase(this.myTasks);
   }
@@ -89,19 +88,14 @@ export class TasklistService {
   }
 
   saveTasksToFirebase(tasks) {
-    this.http.put(this.firebaseURL, tasks).subscribe((results) => {
-      // console.log(results);
-
-    });
+    this.http.put(this.firebaseURL, tasks).subscribe();
   }
 
   buildTasks() {
     const myTaskSub = this.http
       .get(this.taskGeneratorAPIURL, {})
       .subscribe((res : Task[] | []) => {
-        console.log(res);
 
-        console.log('from build tasks', myTaskSub);
         this.saveTasks(res);
       })
   }

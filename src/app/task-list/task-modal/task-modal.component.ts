@@ -56,23 +56,17 @@ export class TaskModalComponent implements OnInit {
   }
     editTask() {
       const task: Task = this.taskForm.value;
-      console.log('editTask', task);
-      console.log('status from edit', task.status);
 
       this.tasklistService.updateTask(task);
     }
 
     addTask() {
-    console.log('this.taskform.value = ', this.taskForm.value);
     const nextId = this.generateId();
     const {title, dueDate, priority, status, desc} = this.taskForm.value
     const datePipe = new DatePipe('en-US');
     const formattedDueDate = datePipe.transform(dueDate, 'MM/dd/yyyy');
-    console.log('nextid = ', nextId);
 
     const newTask = new Task(nextId, title, new Date(formattedDueDate), priority, status, desc);
-    console.log('newTask = ', newTask);
-    console.log('formattedDueDate = ',formattedDueDate);
 
     this.tasklistService.saveTask(newTask);
     this.dialogRef.close();

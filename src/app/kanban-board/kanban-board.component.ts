@@ -18,17 +18,14 @@ export class KanbanBoardComponent implements OnInit {
     this.tasks = this.tasklistService.getTasks()
       this.tasklistService.tasklistUpdated.subscribe((tasks) => {
         this.tasks = tasks;
-        console.log(tasks);
 
       });
     }
 
   onSave(id: number, status: Status) {
     const newStatus = status
-    console.log('status', status);
 
     const task = this.tasks.find((task) => task.id === id)
-    console.log('the lookup', task);
     this.tasklistService.updateTask(task);
 
   }

@@ -10,17 +10,14 @@ export class AutherInterceptorService implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    console.log('intercepting', req);
 
       return this.authService.currentUser.pipe(
         take(1),
         tap(user => {
-          console.log('tap user', user);
 
         }),
         switchMap(user => {
           if (!user) {
-            console.log('no user', user, new Date());
             return next.handle(req);
           }
 
@@ -28,7 +25,6 @@ export class AutherInterceptorService implements HttpInterceptor {
             params: new HttpParams().set("auth", user.token)
 
           });
-          console.log('modifying request', new Date());
 
           return next.handle(modifiedReq);
         })
