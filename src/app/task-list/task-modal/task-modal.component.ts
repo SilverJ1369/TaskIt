@@ -1,25 +1,27 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { Task } from '../task.model';
 import { TasklistService } from '../tasklist.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-modal',
   templateUrl: './task-modal.component.html',
   styleUrls: ['./task-modal.component.css']
 })
-export class TaskModalComponent implements OnInit {
+export class TaskModalComponent implements OnInit, OnDestroy {
   taskForm: FormGroup
   submitButtonText: string = 'Create'
   constructor(
     public dialogRef: MatDialogRef<TaskModalComponent>,
     private tasklistService: TasklistService,
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: Task
-  ) {
+    @Inject(MAT_DIALOG_DATA) public data: Task,
+    private router: Router,
+    ) {
     this.taskForm = this.formBuilder.group({
       id: ['id'],
       title: ['Title', Validators.required],
@@ -39,6 +41,11 @@ export class TaskModalComponent implements OnInit {
       this.taskForm.get("status").setValue(this.data.status);
       this.taskForm.get("desc").setValue(this.data.desc);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.taskForm.reset();
+    this.router.navigate(['/tasklist']);
   }
 
   onCancel(): void {

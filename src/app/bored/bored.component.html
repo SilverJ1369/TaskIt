@@ -4,17 +4,22 @@
       <app-sidebar></app-sidebar>
     </aside>
 
-    <h1>I'm Bored</h1>
-    <p>Let's find something to do</p>
-    <div class="flex-row">
-      <button class="btn btn-success" (click)="generateTask()">
-        Generate Task
-      </button>
-    </div>
-    <div class="new-btn" *ngIf="sugTask">
-      <button class="btn btn-success d-flex justify-content-center" (click)="addBoredTask(sugTaskTitle)">
-        {{ sugTaskTitle }}
-      </button>
+    <div class="d-flex flex-column" style="width: 80%; margin-top: 4%;">
+      <h1 class="main pb-1">I'm Bored</h1>
+      <p class="main pb-1">Let's find something to do</p>
+      <div class="flex-row main mb-2" style="height: 15%;">
+        <button
+          class="btn btn-success btn-lg"
+          (click)="generateTask()"
+          style="width: 15%; height: 75%;">
+          {{ genButtonText }}
+        </button>
+      </div>
+      <div class="new-btn d-flex justify-content-center" *ngIf="sugTask" style="height: 60%;">
+        <button class="btn btn-success p-1" (click)="addBoredTask(sugTaskTitle)" style="height: 35%; min-width: 20%; margin-right: 25%;">
+          {{ sugTaskTitle }}
+        </button>
+      </div>
     </div>
 
   </div>

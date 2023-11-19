@@ -1,11 +1,11 @@
 * {
   margin: 0;
   padding: 0;
-  background-color: #cec9c9;
 }
 
 .flex-container {
   display: flex;
+  background-color: #cec9c9;
 }
 
 .sidebar {
@@ -13,4 +13,13 @@
   border: 1px solid;
   height: 100vh;
   left: 0;
+}
+
+button  {
+  background-color: none;
+
+}
+
+.main {
+  margin-left: 5%;
 }
