@@ -2,7 +2,7 @@
 
 Todo:
 
-auth guard,
+style bored page
 
 
 

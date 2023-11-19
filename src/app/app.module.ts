@@ -20,6 +20,7 @@ import { NotificationComponent } from './shared/notification/notification.compon
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { TaskFilterPipe } from './task-list/task-filter-pipe.pipe';
 import { AutherInterceptorService } from './landing-page/auth-intercepter.service';
+import { BoredComponent } from './bored/bored.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AutherInterceptorService } from './landing-page/auth-intercepter.servic
     NotificationComponent,
     LandingPageComponent,
     TaskFilterPipe,
+    BoredComponent,
   ],
   imports: [
     BrowserModule,

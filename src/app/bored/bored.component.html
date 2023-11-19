@@ -1,0 +1,21 @@
+<div class="main-container">
+  <div class="flex-container">
+    <aside class="sidebar flex-item-fixed">
+      <app-sidebar></app-sidebar>
+    </aside>
+
+    <h1>I'm Bored</h1>
+    <p>Let's find something to do</p>
+    <div class="flex-row">
+      <button class="btn btn-success" (click)="generateTask()">
+        Generate Task
+      </button>
+    </div>
+    <div class="new-btn" *ngIf="sugTask">
+      <button class="btn btn-success d-flex justify-content-center" (click)="addBoredTask(sugTaskTitle)">
+        {{ sugTaskTitle }}
+      </button>
+    </div>
+
+  </div>
+</div>
