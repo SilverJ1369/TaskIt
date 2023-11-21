@@ -80,8 +80,8 @@ export class TasklistService {
     this.taskUpdated.next({task, action});
   }
 
-  completeTask(index: number) {
-    const task: Task = this.myTasks[index];
+  completeTask(id: number) {
+    const task: Task = this.myTasks.find((task) => task.id == id);
     const action: string = 'Completed'
     task.status = Status.completed;
     this.taskUpdated.next({task, action});

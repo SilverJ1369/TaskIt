@@ -27,12 +27,10 @@ export class TaskListComponent implements OnInit {
     public dialog: MatDialog,) {}
 
   ngOnInit(): void {
-
       this.selectedDate = null;
       this.tasklistService.fetchTasksFromFirebase().subscribe({
         next: (tasks) => {
           this.tasks = tasks;
-
           const taskCheck = tasks.length > 0;
           if (!taskCheck) {
             this.tasklistService.buildTasks();
@@ -84,14 +82,14 @@ export class TaskListComponent implements OnInit {
         {
           this.tasklistService.removeTask(index);
         };
-        // push the new changes
         Swal.fire('Deleted!', 'Your task has been deleted.', 'success');
       }
     });
   }
 
-  completeTask(index: number) {
-    this.tasklistService.completeTask(index);
+  completeTask(id: number) {
+    this.tasklistService.completeTask(id);
+    this.tasks = this.tasklistService.getTasks();
   }
 
   openBuildTasks() {

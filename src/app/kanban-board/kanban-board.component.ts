@@ -28,4 +28,23 @@ export class KanbanBoardComponent implements OnInit {
     this.tasklistService.updateTask(task);
 
   }
+
+  drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+
+  allowDrop(event) {
+    event.preventDefault();
+  }
+
+  drop(event, status) {
+    console.log('dropped');
+
+    event.preventDefault();
+    const id = event.dataTransfer.getData("text");
+    const task = this.tasks.find((task) => task.id === +id);
+    task.status = status;
+    this.tasklistService.updateTask(task);
+    event.target.appendChild(document.getElementById(id));
+  }
 }

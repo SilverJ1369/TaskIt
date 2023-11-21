@@ -9,10 +9,19 @@
         <div class="flex-container d-flex flex-row justify-content-between">
           <div class="flex-column ml-3 mr-3">
             <p><b>Todo</b></p>
-            <div class="bg-white kanban-task-column flex-grow-1">
+            <div
+              class="bg-white kanban-task-column flex-grow-1 align-item-stretch"
+              id="drop-zone"
+              (drop)="drop($event, 'todo')"
+              (dragover)="allowDrop($event)">
               <div class="m-3">
                 <div class="flex-container background-reset" *ngFor="let task of tasks">
-                  <div class="inner-card" *ngIf="task.status === 'todo'">
+                  <div
+                    class="inner-card"
+                    *ngIf="task.status === 'todo'"
+                    draggable="true"
+                    id="{{task.id}}"
+                    (dragstart)="drag($event)">
                     <div class="d-flex flex-row justify-content-between">
                       <div class="d-flex flex-column">
                         <p>{{task.title}}</p>
@@ -38,10 +47,19 @@
           </div>
           <div class="flex-column ml-3 mr-3">
             <p><b>In-Progress</b></p>
-            <div class="bg-white kanban-task-column flex-grow-1">
+            <div
+              class="bg-white kanban-task-column flex-grow-1 align-item-stretch"
+              id="drop-zone"
+              (drop)="drop($event, 'inprogress')"
+              (dragover)="allowDrop($event)">
               <div class="m-3">
                 <div class="flex-container background-reset" *ngFor="let task of tasks">
-                  <div class="inner-card" *ngIf="task.status === 'inprogress'">
+                  <div
+                    class="inner-card"
+                    *ngIf="task.status === 'inprogress'"
+                    draggable="true"
+                    id="{{task.id}}"
+                    (dragstart)="drag($event)">
                     <div class="d-flex flex-row justify-content-between">
                       <div class="d-flex flex-column">
                         <p>{{task.title}}</p>
@@ -67,10 +85,19 @@
           </div>
           <div class="flex-column ml-3 mr-3">
             <p><b>Completed</b></p>
-            <div class="bg-white kanban-task-column flex-grow-1">
+            <div
+              class="bg-white kanban-task-column flex-grow-1 align-item-stretch"
+              id="drop-zone"
+              (drop)="drop($event, 'completed')"
+              (dragover)="allowDrop($event)">
               <div class="m-3">
                 <div class="flex-container background-reset" *ngFor="let task of tasks">
-                  <div class="inner-card" *ngIf="task.status === 'completed'">
+                  <div
+                    class="inner-card"
+                    *ngIf="task.status === 'completed'"
+                    draggable="true"
+                    id="{{task.id}}"
+                    (dragstart)="drag($event)">
                     <div class="d-flex flex-row justify-content-between">
                       <div class="d-flex flex-column">
                         <p>{{task.title}}</p>
